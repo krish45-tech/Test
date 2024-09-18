@@ -1,0 +1,66 @@
+'{
+  "size": 5,
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "match": {
+            "manufacturerDetails.firstName": "Adi Shakti Herbals"
+          }
+        }
+      ]
+    }
+  }
+}'
+
+curl -X GET http://10.0.128.134:9200/bizstore/_search -H'Content-Type: application/json' -d'
+{   
+     "_source": ["level3ProductsList.productLevel1Id","level3ProductsList.productLevel1Title","level3ProductsList.productLevel2Id","level3ProductsList.productLeve21Title","level3ProductsList.productLevel3Id","level3ProductsList.productLevel2Title","manufacturerDetails","isPublished"],
+      "size": 1,
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "match": {
+                "isPublished":true
+              }
+            }
+          ],
+          "must_not":[
+            {
+                "match": {
+                  "subModule":"BASE_PRODUCTS"
+                }
+              }
+          ]
+        }
+      }
+    }'
+    
+
+curl -X GET http://10.0.128.134:9200/bizstore/_search -H'Content-Type: application/json' -d'
+{  
+     "size": 1,
+     "query": {
+       "bool": {
+         "must": [
+           {
+             "match": {
+               "level3ProductsList.mrp":"0"
+             }
+           },{
+            "match": {
+              "level3ProductsList.pricePerUnit":"0"
+            }
+          }
+         ],
+         "must_not":[
+           {
+               "match": {
+                 "subModule":"BASE_PRODUCTS"
+               }
+             }
+         ]
+       }
+     }
+   }'
