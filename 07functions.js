@@ -65,11 +65,24 @@
 // }
 // printNumber(5);
 
-function sum(n) {
-  if (n <= 1) {
-    return n;
-  }
-  return n + sum(n - 1);
+// function sum(n) {
+//   if (n <= 1) {
+//     return n;
+//   }
+//   return n + sum(n - 1);
+// }
+// let result = sum(10);
+// console.log(result);
+
+function example() {
+  setTimeout(() => {
+    console.log("Hello from setTimeOut");
+  }, 2000);
+  console.log("hello from function ");
 }
-let result = sum(10);
-console.log(result);
+console.log("fsgs");
+(async function () {
+  await example();
+  console.log("sfsgf");
+})();
+console.log("after calling");
