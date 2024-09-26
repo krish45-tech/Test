@@ -23,3 +23,10 @@ try {
 } catch (err) {
   console.log({ name: err.name, message: err.message });
 }
+
+class NumberError extends Error {
+  constructor(value) {
+    super(value);
+    this.name = "Number Error";
+  }
+}
